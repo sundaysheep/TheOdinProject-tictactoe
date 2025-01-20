@@ -50,13 +50,24 @@ function gameGrid(){
 
 function gameController(playerOneName = "X",playerTwoName = "O"){
 
-    const currentPlayer = playerOneName;
+    const players = [
+        {name: playerOneName},
+        {name: playerTwoName}
+    ]
 
-    const getActivePlayer = () => currentPlayer;
+    let activePlayer = players[0];
 
-    const switchPlayer = () =>{
+    const getActivePlayer = () => activePlayer;
 
-        if getActivePlayer() = 
+    const switchActivePlayer = () => {
+
+        if(activePlayer==players[0]){
+            activePlayer=players[1];
+        }
+
+        else{
+            activePlayer=players[0];
+        }
 
     }
 
@@ -86,21 +97,23 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
     }       //implement later
 
-    const playRound = (player,row,column) => {
+    const playRound = (row,column) => {
 
         if(gridAvailable()){
 
             if(grid[row][column]==' '){
 
-                makeMark(player,row,column);
+                makeMark(getActivePlayer().name,row,column);
 
                 printGrid(grid);
 
+                switchActivePlayer();
+
             }
             
-            else if(grid[row][column]=='X'||grid[row][column]=='O'){
+            else if(grid[row][column]==players[0].name||grid[row][column]==players[1].name){
 
-                console.log('Space occupied. Run command again with another position')
+                console.log('Space occupied. Run command again with another position');
 
             }
 
@@ -109,8 +122,13 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
     }
 
-    return{playRound}
+    return{playRound};
 
 }
+
+// const printDaGrid = gameGrid();
+// printDaGrid.printGrid();
+
+
 
 const game = gameController();
