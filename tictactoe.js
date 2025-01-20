@@ -46,7 +46,19 @@ function gameGrid(){
 
 }
 
+
+
 function gameController(playerOneName = "X",playerTwoName = "O"){
+
+    const currentPlayer = playerOneName;
+
+    const getActivePlayer = () => currentPlayer;
+
+    const switchPlayer = () =>{
+
+        if getActivePlayer() = 
+
+    }
 
     const {getGrid,makeMark,printGrid} = gameGrid();
 
