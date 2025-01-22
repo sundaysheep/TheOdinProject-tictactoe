@@ -34,9 +34,11 @@ function gameGrid(){
     //
 
     const printGrid = (grid) => {
-        grid.forEach(row => {
-            console.log(row.join('|')); // Join elements in the row with a |
-        });
+        // grid.forEach(row => {
+        //     console.log(row.join('|')); // Join elements in the row with a |
+        // });
+
+        console.log(grid);
     };
 
     // Took from chatgpt, relearn
@@ -97,7 +99,22 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
     }       //implement later
 
-    const playRound = (row,column) => {
+    const getPlayerMove = ()=>{
+
+        const rowAndColumn = prompt('Enter Row and Column separated by a comma')
+
+        const values = rowAndColumn.split(',')
+
+        const row = values[0]
+        const column = values[1]
+
+        return {row,column}
+
+    }
+
+    const playRound = () => {
+
+        const {row,column} = getPlayerMove()
 
         if(gridAvailable()){
 
@@ -132,3 +149,4 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
 
 const game = gameController();
+
