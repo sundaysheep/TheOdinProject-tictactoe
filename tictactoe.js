@@ -93,28 +93,30 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
     }
 
+    
+
     const winCondition = () => {
 
 
 
     }       //implement later
 
-    const getPlayerMove = ()=>{
+    // const getPlayerMove = ()=>{
 
-        const rowAndColumn = prompt('Enter Row and Column separated by a comma')
+    //     const rowAndColumn = prompt('Enter Row and Column separated by a comma')
 
-        const values = rowAndColumn.split(',')
+    //     const values = rowAndColumn.split(',')
 
-        const row = values[0]
-        const column = values[1]
+    //     const row = values[0]
+    //     const column = values[1]
 
-        return {row,column}
+    //     return {row,column}
 
-    }
+    // }
 
-    const playRound = () => {
+    const playRound = (row,column) => {
 
-        const {row,column} = getPlayerMove()
+        // const {row,column} = playerMoveButton()
 
         if(gridAvailable()){
 
@@ -139,7 +141,40 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
     }
 
-    return{playRound};
+    const playerMoveButton = () => {
+        
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach(
+
+            (button)=>{
+        
+                button.addEventListener('click',
+        
+                    (event)=>{
+        
+                        const playerMoveId = event.target.id;
+
+                        const playerMove = playerMoveId.split(',');
+        
+                        const row = parseInt(playerMove[0])
+                        const column = parseInt(playerMove[1])
+
+                        // const [row, column] = event.target.id.split(',').map(Number);       //gpt
+
+                        playRound(row,column)
+        
+                    }
+        
+                )
+        
+            }
+        
+        )       //revise
+
+    }
+
+    return{playerMoveButton};
 
 }
 
@@ -149,4 +184,8 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
 
 const game = gameController();
+
+game.playerMoveButton();
+
+
 
