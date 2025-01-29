@@ -156,13 +156,21 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
                 button.addEventListener('click',
         
                     (event)=>{
+
+                        if(event.target.textContent == 'X' || event.target.textContent=='O'){
+
+                            alert("Select different Cell!")
+
+                            return
+
+                        }
         
                         const playerMoveId = event.target.id;
 
                         const targetButton = document.getElementById(playerMoveId)
 
                         const playerMove = playerMoveId.split(',');
-        
+                
                         const row = parseInt(playerMove[0])
                         const column = parseInt(playerMove[1])
 
