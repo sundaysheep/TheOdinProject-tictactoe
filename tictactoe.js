@@ -114,17 +114,21 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
     // }
 
-    const playRound = (row,column) => {
+    const playRound = (row,column,targetButton) => {
 
         // const {row,column} = playerMoveButton()
 
         if(gridAvailable()){
+
+            targetButton.textContent = getActivePlayer().name;
 
             if(grid[row][column]==' '){
 
                 makeMark(getActivePlayer().name,row,column);
 
                 printGrid(grid);
+
+
 
                 switchActivePlayer();
 
@@ -155,6 +159,8 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
         
                         const playerMoveId = event.target.id;
 
+                        const targetButton = document.getElementById(playerMoveId)
+
                         const playerMove = playerMoveId.split(',');
         
                         const row = parseInt(playerMove[0])
@@ -162,7 +168,7 @@ function gameController(playerOneName = "X",playerTwoName = "O"){
 
                         // const [row, column] = event.target.id.split(',').map(Number);       //gpt
 
-                        playRound(row,column)
+                        playRound(row,column,targetButton)
         
                     }
         
